@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="InvestorsList.css"/>
+  <link rel="stylesheet" href="salesforce-lightning-design-system-2.13.7/assets/styles/salesforce-lightning-design-system.min.css"/>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.1/jquery.min.js"></script>
+  <script src="InvestorList.js"></script>
+</head>
+<body class="colorAndFont">
+
+  <div id="mySidenav" class="sidenav font-color_white">
+
+    <!--Brand name & close button-->
+    <div class=" slds-m-around_large slds-grid slds-gutters border-gray slds-p-bottom_x-small">
+      <div class="slds-col slds-size_1-of-4"></div>
+      <div class=" slds-col brand-name-margin slds-size_2-of-4">
+        <p class="heading-font slds-align_absolute-center">ABCX</p>
+        <p class="slds-align_absolute-center small-font" style="margin-top:-10px">Platform</p>
+      </div>
+      <div class=" slds-col slds-size_1-of-4">
+        <button class="font-color_white slds-float_right slds-button slds-button_icon" title="More Options" onclick="closeNav()">
+          <svg class="slds-button__icon slds-button__icon_large" aria-hidden="true">
+            <use xlink:href="salesforce-lightning-design-system-2.13.7/assets/icons/utility-sprite/svg/symbols.svg#close"></use>
+          </svg>
+          <span class="slds-assistive-text">More options</span>
+        </button>
+      </div>
+    </div>
+
+
+
+    <div id="summaryDiv" class="slds-m-vertical_large slds-m-horizontal_medium  slds-grid slds-gutters slds-grid_vertical-align-center" onclick="showSummarySubmenu()">
+      <div class="slds-col">SUMMARY</div>
+      <div class="slds-col">
+       <button id="summary-accordian-button" class="font-color_white slds-float_right slds-button slds-button_icon" title="More Options">
+        <svg class="slds-button__icon slds-button__icon_small" aria-hidden="true">
+          <use xlink:href="salesforce-lightning-design-system-2.13.7/assets/icons/utility-sprite/svg/symbols.svg#chevronright"></use>
+        </svg>
+        <span class="slds-assistive-text">More options</span>
+      </button>
+    </div>
+  </div>
+
+
+
+  <div id="summarySubmenu" class="submenu slds-m-left_large">
+    <ul>
+      <li class="slds-m-vertical_large">Recent</li>
+    </ul>
+  </div>
+
+
+
+  <div class="slds-m-vertical_large slds-m-horizontal_medium  slds-grid slds-gutters slds-grid_vertical-align-center" onclick="showInvestmentsSubmenu()">
+    <div class="slds-col">INVESTMENTS</div>
+    <div class="slds-col">
+     <button id="investments-accordian-button" class="font-color_white slds-float_right slds-button slds-button_icon" title="More Options" >
+      <svg class="slds-button__icon slds-button__icon_small" aria-hidden="true">
+        <use xlink:href="salesforce-lightning-design-system-2.13.7/assets/icons/utility-sprite/svg/symbols.svg#chevronright"></use>
+      </svg>
+      <span class="slds-assistive-text">More options</span>
+    </button>
+  </div>
+</div>
+
+
+<div id="investmentsSubmenu" class="submenu slds-m-left_large">
+ <ul>
+   <li class="slds-m-vertical_large">List</li>
+ </ul>
+</div>
+
+
+<div class="slds-m-vertical_large slds-m-horizontal_medium  slds-grid slds-gutters slds-grid_vertical-align-center" onclick="showDocumentsSubmenu()">
+  <div class="slds-col">DOCUMENTS</div>
+  <div class="slds-col">
+   <button id="documents-accordian-button" class="font-color_white slds-float_right slds-button slds-button_icon" title="More Options" >
+    <svg class="slds-button__icon slds-button__icon_small" aria-hidden="true">
+      <use xlink:href="salesforce-lightning-design-system-2.13.7/assets/icons/utility-sprite/svg/symbols.svg#chevronright"></use>
+    </svg>
+    <span class="slds-assistive-text">More options</span>
+  </button>
+</div>
+</div>
+
+<div id="documentsSubmenu" class="submenu slds-m-left_large">
+  <ul>
+    <li class="slds-m-vertical_large">Tax</li>
+    <li class="slds-m-vertical_large">Legal</li>
+    <li class="slds-m-vertical_large">Updates/Memo</li>
+
+  </ul>
+</div>
+
+
+
+<div class="slds-m-vertical_large slds-m-horizontal_medium  slds-grid slds-gutters slds-grid_vertical-align-center" onclick="showTransactionsSubmenu()">
+  <div class="slds-col">TRANSACTIONS</div>
+  <div class="slds-col">
+   <button id="transactions-accordian-button" class="font-color_white slds-float_right slds-button slds-button_icon" title="More Options">
+    <svg class="slds-button__icon slds-button__icon_small" aria-hidden="true">
+      <use xlink:href="salesforce-lightning-design-system-2.13.7/assets/icons/utility-sprite/svg/symbols.svg#chevronright"></use>
+    </svg>
+    <span class="slds-assistive-text">More options</span>
+  </button>
+</div>
+</div>
+
+<div id="transactionsSubmenu" class="submenu slds-m-left_large">
+ <ul>
+   <li class="slds-m-vertical_large">Grid</li>
+ </ul>
+</div>
+
+
+
+
+<div class="slds-m-vertical_large slds-m-horizontal_medium  slds-grid slds-gutters slds-grid_vertical-align-center" onclick="showDelegateSubmenu()">
+  <div class="slds-col">DELEGATE</div>
+  <div class="slds-col">
+   <button id="delegate-accordian-button" class="font-color_white slds-float_right slds-button slds-button_icon" title="More Options" >
+    <svg class="slds-button__icon slds-button__icon_small" aria-hidden="true">
+      <use xlink:href="salesforce-lightning-design-system-2.13.7/assets/icons/utility-sprite/svg/symbols.svg#chevronright"></use>
+    </svg>
+    <span class="slds-assistive-text">More options</span>
+  </button>
+</div>
+</div>
+
+<div id="delegateSubmenu" class="submenu slds-m-left_large">
+ <ul>
+   <li class="slds-m-vertical_large">List</li>
+ </ul>
+</div>
+
+<div class="sidenav-footer">
+  <span class="font-color_gray slds-align_absolute-center">&copy; ABCX 2020 All Rights Reserved</span>
+</div>
+
+</div>
+
+
+
+
+
+<!--Header -->
+<div class="header bg-color_white">
+  <div class="container">
+    <div class="slds-grid slds-gutters slds-grid_vertical-align-center slds-p-around_small">
+      <div class="desktop-display-none slds-col slds-size_1-of-12">
+        <button class="slds-button slds-button_icon" title="More Options" onclick="openNav()">
+          <svg class="slds-button__icon slds-button__icon_large" aria-hidden="true">
+            <use xlink:href="salesforce-lightning-design-system-2.13.7/assets/icons/utility-sprite/svg/symbols.svg#rows"></use>
+          </svg>
+          <span class="slds-assistive-text">More options</span>
+        </button>
+      </div>
+      <div class="slds-col slds-size_9-of-12 slds-large-size_10-of-12" id="heading">
+        <span class="heading-font desktop-heading">ABCX</span>
+      </div>
+      <div class="slds-col slds-size_1-of-12 slds-large-size_1-of-12">
+       <button class="slds-button slds-button_icon" title="More Options">
+        <svg class="slds-button__icon slds-button__icon_large" aria-hidden="true">
+          <use xlink:href="salesforce-lightning-design-system-2.13.7/assets/icons/utility-sprite/svg/symbols.svg#notification"></use>
+        </svg>
+        <span class="slds-assistive-text">Notification</span>
+      </button>
+    </div>
+    <div class="slds-col slds-size_1-of-12 slds-large-size_1-of-12">
+      <button class="slds-button slds-button_icon" title="More Options">
+        <svg class="slds-button__icon slds-button__icon_large" aria-hidden="true">
+          <use xlink:href="salesforce-lightning-design-system-2.13.7/assets/icons/utility-sprite/svg/symbols.svg#user"></use>
+        </svg>
+        <span class="slds-assistive-text">User</span>
+      </button>
+    </div>
+  </div>
+</div>
+</div>
+<!--Header ends here -->
+
+
+
+<div class="slds-grid">
+
+  <!-- Desktop sidenav starts here -->
+  <div class="slds-col desktop-sidenav mobile-display-none slds-size_1-of-5 slds-large-size_1-of-5">
+    <div class="slds-p-left_large slds-p-top_medium">
+     <ul class="slds-p-left_small slds-p-vertical_medium">
+       <li class="font-color_blue small-font">SUMMARY</li>
+       <ul>
+         <li class="slds-p-top_large">My Summary</li>
+       </ul>
+     </ul>
+
+     <ul class="slds-p-left_small slds-p-vertical_medium">
+       <li class="font-color_blue small-font">INVESTMENTS</li>
+       <ul>
+         <li class="slds-p-top_large">My Investments</li>
+         <li class="slds-p-top_large">Investor List</li>
+       </ul>
+     </ul>
+
+     <ul class="slds-p-left_small slds-p-vertical_medium">
+       <li class="font-color_blue small-font">DOCUMENTS</li>
+       <ul>
+         <li class="slds-p-top_large">My Documents</li>
+         <li class="slds-p-top_large">Delegate Document</li>
+
+       </ul>
+     </ul>
+
+     <ul class="slds-p-left_small slds-p-vertical_medium">
+       <li class="font-color_blue small-font">TRANSACTIONS</li>
+       <ul>
+         <li class="slds-p-top_large">My Transactions</li>
+       </ul>
+     </ul>
+
+     <ul class="slds-p-left_small slds-p-vertical_medium">
+       <li class="font-color_blue small-font">DELEGATE</li>
+       <ul>
+         <li class="slds-p-top_large">My Delegate</li>
+       </ul>
+     </ul>
+   </div>
+
+
+   <div class="desktop-sidenav-footer">
+    <span class="font-color_gray slds-align_absolute-center">&copy; ABCX 2020 All Rights Reserved</span>
+  </div>
+</div>
+<!-- Desktop sidenav ends here -->
+
+<!--Content starts here -->
+<div class="slds-col slds-size_1-of-1 slds-large-size_4-of-5">
+
+
+
+
+  <!-- Content header -->
+  <div class="mobile-display-none">
+    <div class="slds-grid slds-gutters slds-m-top_large slds-m-horizontal_medium">
+      <div class="slds-col slds-size_3-of-12 slds-p-top_xx-small">
+        INVESTORS LIST
+      </div>
+
+      <div class="slds-col slds-size_4-of-12">
+        <div class="slds-form-element">
+          <div class="slds-form-element__control">
+            <div class="slds-combobox_container">
+              <div class="slds-combobox slds-dropdown-trigger slds-dropdown-trigger_click" aria-expanded="false" aria-haspopup="listbox" role="combobox">
+                <div class="slds-combobox__form-element slds-input-has-icon slds-input-has-icon_right" role="none">
+                  <input type="text" class="slds-input slds-combobox__input" id="combobox-id-1" aria-autocomplete="list" aria-controls="listbox-id-1" autocomplete="off" role="textbox" placeholder="Search..." />
+                  <span class="slds-icon_container slds-icon-utility-search slds-input__icon slds-input__icon_right">
+                    <svg class="slds-icon slds-icon slds-icon_x-small slds-icon-text-default" aria-hidden="true">
+                      <use xlink:href="salesforce-lightning-design-system-2.13.7/assets/icons/utility-sprite/svg/symbols.svg#search"></use>
+                    </svg>
+                  </span>
+                </div>
+                <div id="listbox-id-1" class="slds-dropdown slds-dropdown_length-with-icon-7 slds-dropdown_fluid" role="listbox">
+                  <ul class="slds-listbox slds-listbox_vertical" role="presentation">
+                    <li role="presentation" class="slds-listbox__item">
+                      <div id="option1" class="slds-media slds-listbox__option slds-listbox__option_entity slds-listbox__option_has-meta" role="option">
+                        <span class="slds-media__figure slds-listbox__option-icon">
+                          <span class="slds-icon_container slds-icon-standard-account">
+                            <svg class="slds-icon slds-icon_small" aria-hidden="true">
+                              <use xlink:href="/assets/icons/standard-sprite/svg/symbols.svg#account"></use>
+                            </svg>
+                          </span>
+                        </span>
+                        <span class="slds-media__body">
+                          <span class="slds-listbox__option-text slds-listbox__option-text_entity">Burlington Textiles Corp of America</span>
+                          <span class="slds-listbox__option-meta slds-listbox__option-meta_entity">Account • Burlington, NC</span>
+                        </span>
+                      </div>
+                    </li>
+                    <li role="presentation" class="slds-listbox__item">
+                      <div id="option2" class="slds-media slds-listbox__option slds-listbox__option_entity slds-listbox__option_has-meta" role="option">
+                        <span class="slds-media__figure slds-listbox__option-icon">
+                          <span class="slds-icon_container slds-icon-standard-account">
+                            <svg class="slds-icon slds-icon_small" aria-hidden="true">
+                              <use xlink:href="/assets/icons/standard-sprite/svg/symbols.svg#account"></use>
+                            </svg>
+                          </span>
+                        </span>
+                        <span class="slds-media__body">
+                          <span class="slds-listbox__option-text slds-listbox__option-text_entity">Dickenson plc</span>
+                          <span class="slds-listbox__option-meta slds-listbox__option-meta_entity">Account • Lawrence, KS</span>
+                        </span>
+                      </div>
+                    </li>
+                    <li role="presentation" class="slds-listbox__item">
+                      <div id="option3" class="slds-media slds-listbox__option slds-listbox__option_entity slds-listbox__option_has-meta" role="option">
+                        <span class="slds-media__figure slds-listbox__option-icon">
+                          <span class="slds-icon_container slds-icon-standard-account">
+                            <svg class="slds-icon slds-icon_small" aria-hidden="true">
+                              <use xlink:href="/assets/icons/standard-sprite/svg/symbols.svg#account"></use>
+                            </svg>
+                          </span>
+                        </span>
+                        <span class="slds-media__body">
+                          <span class="slds-listbox__option-text slds-listbox__option-text_entity">Edge Communications</span>
+                          <span class="slds-listbox__option-meta slds-listbox__option-meta_entity">Account • Austin, TX</span>
+                        </span>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="slds-col slds-size_1-of-12">
+        <div class="slds-align_absolute-center">
+          <button class="slds-button slds-button_icon slds-button_icon-more slds-p-horizontal_small" aria-haspopup="true" title="More Options">
+            Both  &nbsp; 
+            <svg class="slds-button__icon" aria-hidden="true">
+              <use xlink:href="salesforce-lightning-design-system-2.13.7/assets/icons/utility-sprite/svg/symbols.svg#down"></use>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="slds-col slds-size_1-of-12">
+        <div class="slds-align_absolute-center">
+          <button class="slds-button slds-button_icon slds-button_icon-more slds-p-horizontal_medium" aria-haspopup="true" title="More Options">
+            All &nbsp; &nbsp; 
+            <svg class="slds-button__icon" aria-hidden="true">
+              <use xlink:href="salesforce-lightning-design-system-2.13.7/assets/icons/utility-sprite/svg/symbols.svg#down"></use>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="slds-col slds-size_2-of-12">
+        <div class="slds-align_absolute-center">
+          <button id="gridViewButton" class="slds-button slds-button_icon slds-button_icon-more" aria-haspopup="true" title="More Options" onclick="gridView()">
+            <svg class="slds-button__icon" aria-hidden="true">
+              <use xlink:href="salesforce-lightning-design-system-2.13.7/assets/icons/utility-sprite/svg/symbols.svg#apps"></use>
+            </svg>
+          </button>
+          <button id="listViewButton" class="slds-button slds-button_icon slds-button_icon-more" aria-haspopup="true" title="More Options" onclick="listView()" style="background-color: #03a9f4">
+            <svg class="slds-button__icon" aria-hidden="true">
+              <use xlink:href="salesforce-lightning-design-system-2.13.7/assets/icons/utility-sprite/svg/symbols.svg#list"></use>
+            </svg>
+            <span class="slds-assistive-text">More options</span>
+          </button>
+        </div>
+      </div>
+
+
+      <div class="slds-col slds-size_1-of-12" style="margin-left:-2.8rem">
+        <button class="slds-button slds-button_icon slds-button_icon-more" aria-haspopup="true" title="More Options">
+          <svg class="slds-button__icon" aria-hidden="true">
+            <use xlink:href="salesforce-lightning-design-system-2.13.7/assets/icons/utility-sprite/svg/symbols.svg#download"></use>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+  <div class="desktop-display-none container mobile-body-font">
+    <div class="slds-grid slds-grid_vertical-align-center">
+      <div class="slds-col slds-size_3-of-7 slds-p-vertical_large slds-p-left_medium">
+        Account Summary
+      </div>
+
+      <div class="slds-col slds-size_2-of-7">
+        <div class="slds-float_right">
+          <button class="slds-button slds-button_icon slds-button_icon-more slds-p-horizontal_large" aria-haspopup="true" title="More Options">
+            YTD  &nbsp; 
+            <svg class="slds-button__icon" aria-hidden="true">
+              <use xlink:href="salesforce-lightning-design-system-2.13.7/assets/icons/utility-sprite/svg/symbols.svg#down"></use>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="slds-col slds-size_2-of-7">
+        <div class="slds-float_right">
+          <button class="slds-button slds-button_icon slds-button_icon-more slds-p-horizontal_large" aria-haspopup="true" title="More Options">
+            All &nbsp; &nbsp; 
+            <svg class="slds-button__icon" aria-hidden="true">
+              <use xlink:href="salesforce-lightning-design-system-2.13.7/assets/icons/utility-sprite/svg/symbols.svg#down"></use>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Content header -->
+
+  <!--Investors List-->
+  <div id="cardsContainer" class="slds-grid slds-grid_vertical slds-m-top_large">
+    <!-- style="flex-wrap: wrap" -->
+
+
+    <!--table heading--->
+    <div id="tableHeading" class="slds-col container-list bg-color_white slds-m-horizontal_large slds-m-top_large"> <!--style="width:33.33%"-->
+      <div class="mobile-display-none slds-col fontColor-light">
+        <article class="slds-p-around_small card-border slds-border_bottom slds-card">
+          <div class="slds-grid slds-gutters slds-grid_vertical-align-center"> <!--style="flex-direction: column;"-->
+            <div class="slds-col slds-size_1-of-12">
+            </div>
+            <div class="name-field fontColor-light name-field slds-col slds-size_3-of-12">
+              <span>Name</span>
+            </div>
+            <div class="fontColor-light slds-col slds-size_2-of-12">
+              <span>Total Contributions</span>
+            </div>
+            <div class="fontColor-light slds-col slds-size_2-of-12">
+              <span>Total Distributions</span>
+            </div>
+            <div class="fontColor-light slds-col slds-size_2-of-12">
+              <span>Total Balance</span>
+            </div>
+            <div class="fontColor-light slds-col slds-size_1-of-12">
+              <span>Details</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+    <!--table heading ends here--->
+
+
+    <div class=" slds-col container-list bg-color_white slds-m-horizontal_large mobile-margin-top"> <!--style="width:33.33%"-->
+
+      <article class="card-mobile slds-p-around_small card-border slds-card">
+
+        <div class="cardColumn card-content-mobile slds-grid slds-gutters slds-grid_vertical-align-center slds-wrap">
+
+          <div class="cardContentColumn slds-col slds-size_1-of-1 slds-large-size_1-of-12 slds-order_2 slds-large-order_1">
+
+            <img class="headshots" src="https://images.unsplash.com/photo-1599577180513-7dd76ffd9761?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=400&ixid=eyJhcHBfaWQiOjF9&ixlib=rb-1.2.1&q=80&w=400">
+          </div>
+
+          <div class="cardContentColumn name-field slds-col slds-size_1-of-1 slds-large-size_3-of-12 slds-order_3 slds-large-order_2">
+            <span>Eva Adley</span>
+          </div>
+
+          <div class="cardCustomOrder3 gridViewShow cardContentColumn desktop-display-none fontColor-light mobile-smallFont slds-col slds-size_1-of-1 slds-order_4">
+            <span>evaadley@gmail.com</span>
+          </div>
+
+          <div class="cardCustomOrder3 gridViewShow cardContentColumn desktop-display-none fontColor-light slds-m-top_small mobile-smallFont slds-col slds-size_1-of-1 slds-order_4">
+            Total Contributors
+          </div>
+
+          <div class="cardContentColumn slds-col slds-size_1-of-1 slds-large-size_2-of-12 slds-order_5 slds-large-order_3">
+            <span>$ 123,789</span>
+          </div>
+
+          <div class="grid-view-none mobile-display-none slds-col slds-size_1-of-1 slds-large-size_2-of-12 slds-order_5 slds-large-order_4">
+            <span>$ 571,823</span>
+          </div>
+
+
+          <div class="grid-view-none mobile-display-none slds-col slds-size_1-of-1 slds-large-size_2-of-12 slds-order_6 slds-large-order_5">
+            <span>$ 872,345</span>
+          </div>
+
+          <div class="grid-view-none mobile-display-none slds-col slds-size_1-of-1 slds-large-size_1-of-12 slds-order_7 slds-large-order_6">
+            <button class="slds-button slds-button_icon" title="More Options">
+              <svg class="view-more-icon-transform font-color_blue color-link slds-button__icon slds-button__icon_medium" aria-hidden="true">
+                <use xlink:href="salesforce-lightning-design-system-2.13.7/assets/icons/utility-sprite/svg/symbols.svg#open"></use>
+              </svg>
+              <span class="slds-assistive-text">More options</span> &nbsp;
+              <a class="font-color_blue">View</a>
+            </button> 
+          </div>
+
+
+          <div class="cardContentColumn detail-button slds-col slds-size_1-of-1 slds-large-size_1-of-12 slds-order_1 slds-large-order_7">
+            <button class="slds-float_right slds-button slds-button_icon" title="More Options">
+              <svg class="slds-button__icon slds-button__icon_medium" aria-hidden="true">
+                <use xlink:href="salesforce-lightning-design-system-2.13.7/assets/icons/utility-sprite/svg/symbols.svg#threedots"></use>
+              </svg>
+              <span class="slds-assistive-text">More options</span>
+            </button> 
+          </div>
+        </div>
+        <footer class="gridViewShow desktop-display-none slds-card__footer">
+          <a class="slds-card__footer-action" href="javascript:void(0);">View Detail
+            <span class="slds-assistive-text">Accounts</span>
+          </a>
+        </footer>
+      </article>
+    </div>
+
+
+
+
+
+
+
+
+    <div class=" slds-col container-list bg-color_white slds-m-horizontal_large mobile-margin-top"> <!--style="width:33.33%"-->
+
+      <article class="card-mobile slds-p-around_small card-border slds-card">
+
+        <div class="cardColumn card-content-mobile slds-grid slds-gutters slds-grid_vertical-align-center slds-wrap">
+
+          <div class="cardContentColumn slds-col slds-size_1-of-1 slds-large-size_1-of-12 slds-order_2 slds-large-order_1">
+
+            <img class="headshots" src="https://images.unsplash.com/photo-1533075377664-f5c0cbc5a91c?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=400&ixid=eyJhcHBfaWQiOjF9&ixlib=rb-1.2.1&q=80&w=400">
+          </div>
+
+          <div class="cardContentColumn name-field slds-col slds-size_1-of-1 slds-large-size_3-of-12 slds-order_3 slds-large-order_2">
+            <span>James Abrahim</span>
+          </div>
+
+          <div class="cardCustomOrder3 gridViewShow cardContentColumn desktop-display-none fontColor-light mobile-smallFont slds-col slds-size_1-of-1 slds-order_4">
+            <span>jamesabrahim@gmail.com</span>
+          </div>
+
+          <div class="cardCustomOrder3 gridViewShow cardContentColumn desktop-display-none fontColor-light slds-m-top_small mobile-smallFont slds-col slds-size_1-of-1 slds-order_4">
+            Total Contributors
+          </div>
+
+          <div class="cardContentColumn slds-col slds-size_1-of-1 slds-large-size_2-of-12 slds-order_5 slds-large-order_3">
+            <span>$ 256,324</span>
+          </div>
+
+          <div class="grid-view-none mobile-display-none slds-col slds-size_1-of-1 slds-large-size_2-of-12 slds-order_5 slds-large-order_4">
+            <span>$ 571,823</span>
+          </div>
+
+
+          <div class="grid-view-none mobile-display-none slds-col slds-size_1-of-1 slds-large-size_2-of-12 slds-order_6 slds-large-order_5">
+            <span>$ 872,345</span>
+          </div>
+
+          <div class="grid-view-none mobile-display-none slds-col slds-size_1-of-1 slds-large-size_1-of-12 slds-order_7 slds-large-order_6">
+            <button class="slds-button slds-button_icon" title="More Options">
+              <svg class="view-more-icon-transform font-color_blue color-link slds-button__icon slds-button__icon_medium" aria-hidden="true">
+                <use xlink:href="salesforce-lightning-design-system-2.13.7/assets/icons/utility-sprite/svg/symbols.svg#open"></use>
+              </svg>
+              <span class="slds-assistive-text">More options</span> &nbsp;
+              <a class="font-color_blue">View</a>
+            </button> 
+          </div>
+
+
+          <div class="cardContentColumn detail-button slds-col slds-size_1-of-1 slds-large-size_1-of-12 slds-order_1 slds-large-order_7">
+            <button class="slds-float_right slds-button slds-button_icon" title="More Options">
+              <svg class="slds-button__icon slds-button__icon_medium" aria-hidden="true">
+                <use xlink:href="salesforce-lightning-design-system-2.13.7/assets/icons/utility-sprite/svg/symbols.svg#threedots"></use>
+              </svg>
+              <span class="slds-assistive-text">More options</span>
+            </button> 
+          </div>
+        </div>
+        <footer class="gridViewShow desktop-display-none slds-card__footer">
+          <a class="slds-card__footer-action" href="javascript:void(0);">View Detail
+            <span class="slds-assistive-text">Accounts</span>
+          </a>
+        </footer>
+      </article>
+    </div>
+
+
+
+
+
+
+
+    <div class="slds-col container-list bg-color_white slds-m-horizontal_large mobile-margin-top"> <!--style="width:33.33%"-->
+
+      <article class="card-mobile slds-p-around_small card-border slds-card">
+
+        <div class="cardColumn card-content-mobile slds-grid slds-gutters slds-grid_vertical-align-center slds-wrap">
+
+          <div class="cardContentColumn slds-col slds-size_1-of-1 slds-large-size_1-of-12 slds-order_2 slds-large-order_1">
+
+            <img class="headshots" src="https://images.unsplash.com/photo-1536318540497-c677f1c64e3d?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=400&ixid=eyJhcHBfaWQiOjF9&ixlib=rb-1.2.1&q=80&w=400">
+          </div>
+
+          <div class="cardContentColumn name-field slds-col slds-size_1-of-1 slds-large-size_3-of-12 slds-order_3 slds-large-order_2">
+            <span>Ivan Magalhaes</span>
+          </div>
+
+          <div class="cardCustomOrder3 gridViewShow cardContentColumn desktop-display-none fontColor-light  mobile-smallFont slds-col slds-size_1-of-1 slds-order_4">
+            <span>ivanmagalhaes@gmail.com</span>
+          </div>
+
+          <div class="cardCustomOrder3 gridViewShow cardContentColumn desktop-display-none fontColor-light slds-m-top_small mobile-smallFont slds-col slds-size_1-of-1 slds-order_4">
+            Total Contributors
+          </div>
+
+          <div class="cardContentColumn slds-col slds-size_1-of-1 slds-large-size_2-of-12 slds-order_5 slds-large-order_3">
+            <span>$ 256,324</span>
+          </div>
+
+          <div class="grid-view-none mobile-display-none slds-col slds-size_1-of-1 slds-large-size_2-of-12 slds-order_5 slds-large-order_4">
+            <span>$ 571,823</span>
+          </div>
+
+
+          <div class="grid-view-none mobile-display-none slds-col slds-size_1-of-1 slds-large-size_2-of-12 slds-order_6 slds-large-order_5">
+            <span>$ 872,345</span>
+          </div>
+
+          <div class="grid-view-none mobile-display-none slds-col slds-size_1-of-1 slds-large-size_1-of-12 slds-order_7 slds-large-order_6">
+            <button class="slds-button slds-button_icon" title="More Options">
+              <svg class="view-more-icon-transform font-color_blue color-link slds-button__icon slds-button__icon_medium" aria-hidden="true">
+                <use xlink:href="salesforce-lightning-design-system-2.13.7/assets/icons/utility-sprite/svg/symbols.svg#open"></use>
+              </svg>
+              <span class="slds-assistive-text">More options</span> &nbsp;
+              <a class="font-color_blue">View</a>
+            </button> 
+          </div>
+
+
+          <div class="cardContentColumn detail-button slds-col slds-size_1-of-1 slds-large-size_1-of-12 slds-order_1 slds-large-order_7">
+            <button class="slds-float_right slds-button slds-button_icon" title="More Options">
+              <svg class="slds-button__icon slds-button__icon_medium" aria-hidden="true">
+                <use xlink:href="salesforce-lightning-design-system-2.13.7/assets/icons/utility-sprite/svg/symbols.svg#threedots"></use>
+              </svg>
+              <span class="slds-assistive-text">More options</span>
+            </button> 
+          </div>
+        </div>
+        <footer class="gridViewShow desktop-display-none slds-card__footer">
+          <a class="slds-card__footer-action" href="javascript:void(0);">View Detail
+            <span class="slds-assistive-text">Accounts</span>
+          </a>
+        </footer>
+      </article>
+
+    </div>
+
+
+
+
+    <div class="slds-col container-list bg-color_white slds-m-horizontal_large mobile-margin-top"> <!--style="width:33.33%"-->
+
+      <article class="card-mobile slds-p-around_small card-border slds-card">
+
+        <div class="cardColumn card-content-mobile slds-grid slds-gutters slds-grid_vertical-align-center slds-wrap">
+
+          <div class="cardContentColumn slds-col slds-size_1-of-1 slds-large-size_1-of-12 slds-order_2 slds-large-order_1">
+
+            <img class="headshots" src="https://images.unsplash.com/photo-1517544901192-0f8a27fc56a5?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=400&ixid=eyJhcHBfaWQiOjF9&ixlib=rb-1.2.1&q=80&w=400">
+          </div>
+
+          <div class="cardContentColumn name-field slds-col slds-size_1-of-1 slds-large-size_3-of-12 slds-order_3 slds-large-order_2">
+            <span>Nick Ainsley</span>
+          </div>
+
+          <div class="cardCustomOrder3 gridViewShow cardContentColumn desktop-display-none fontColor-light mobile-smallFont slds-col slds-size_1-of-1 slds-order_4">
+            <span>nickansley@gmail.com</span>
+          </div>
+
+          <div class="cardCustomOrder3 gridViewShow cardContentColumn desktop-display-none fontColor-light slds-m-top_small mobile-smallFont slds-col slds-size_1-of-1 slds-order_4">
+            Total Contributors
+          </div>
+
+          <div class="cardContentColumn slds-col slds-size_1-of-1 slds-large-size_2-of-12 slds-order_5 slds-large-order_3">
+            <span>$ 256,324</span>
+          </div>
+
+          <div class="grid-view-none mobile-display-none slds-col slds-size_1-of-1 slds-large-size_2-of-12 slds-order_5 slds-large-order_4">
+            <span>$ 571,823</span>
+          </div>
+
+
+          <div class="grid-view-none mobile-display-none slds-col slds-size_1-of-1 slds-large-size_2-of-12 slds-order_6 slds-large-order_5">
+            <span>$ 872,345</span>
+          </div>
+
+          <div class="grid-view-none mobile-display-none slds-col slds-size_1-of-1 slds-large-size_1-of-12 slds-order_7 slds-large-order_6">
+            <button class="slds-button slds-button_icon" title="More Options">
+              <svg class="view-more-icon-transform font-color_blue color-link slds-button__icon slds-button__icon_medium" aria-hidden="true">
+                <use xlink:href="salesforce-lightning-design-system-2.13.7/assets/icons/utility-sprite/svg/symbols.svg#open"></use>
+              </svg>
+              <span class="slds-assistive-text">More options</span> &nbsp;
+              <a class="font-color_blue">View</a>
+            </button> 
+          </div>
+
+
+          <div class="cardContentColumn detail-button slds-col slds-size_1-of-1 slds-large-size_1-of-12 slds-order_1 slds-large-order_7">
+            <button class="slds-float_right slds-button slds-button_icon" title="More Options">
+              <svg class="slds-button__icon slds-button__icon_medium" aria-hidden="true">
+                <use xlink:href="salesforce-lightning-design-system-2.13.7/assets/icons/utility-sprite/svg/symbols.svg#threedots"></use>
+              </svg>
+              <span class="slds-assistive-text">More options</span>
+            </button> 
+          </div>
+        </div>
+        <footer class="gridViewShow desktop-display-none slds-card__footer">
+          <a class="slds-card__footer-action" href="javascript:void(0);">View Detail
+            <span class="slds-assistive-text">Accounts</span>
+          </a>
+        </footer>
+      </article>
+    </div>
+
+
+
+
+
+
+    <div class="slds-col container-list bg-color_white slds-m-horizontal_large mobile-margin-top"> <!--style="width:33.33%"-->
+
+      <article class="card-mobile slds-p-around_small card-border slds-card">
+
+        <div class="cardColumn card-content-mobile slds-grid slds-gutters slds-grid_vertical-align-center slds-wrap">
+
+          <div class="cardContentColumn slds-col slds-size_1-of-1 slds-large-size_1-of-12 slds-order_2 slds-large-order_1">
+
+            <img class="headshots" src="/Users/prachi.keswanimtxb2b/Documents/assets/images/profile_avatar_160.png">
+          </div>
+
+          <div class="cardContentColumn name-field slds-col slds-size_1-of-1 slds-large-size_3-of-12 slds-order_3 slds-large-order_2">
+            <span>Jorge Walker</span>
+          </div>
+
+          <div class="cardCustomOrder3 gridViewShow cardContentColumn desktop-display-none fontColor-light mobile-smallFont slds-col slds-size_1-of-1 slds-order_4">
+            <span>jorgewalker@gmail.com</span>
+          </div>
+
+          <div class="cardCustomOrder3 gridViewShow cardContentColumn desktop-display-none fontColor-light slds-m-top_small mobile-smallFont slds-col slds-size_1-of-1 slds-order_4">
+            Total Contributors
+          </div>
+
+          <div class="cardContentColumn slds-col slds-size_1-of-1 slds-large-size_2-of-12 slds-order_5 slds-large-order_3">
+            <span>$ 256,324</span>
+          </div>
+
+          <div class="grid-view-none mobile-display-none slds-col slds-size_1-of-1 slds-large-size_2-of-12 slds-order_5 slds-large-order_4">
+            <span>$ 571,823</span>
+          </div>
+
+
+          <div class="grid-view-none mobile-display-none slds-col slds-size_1-of-1 slds-large-size_2-of-12 slds-order_6 slds-large-order_5">
+            <span>$ 872,345</span>
+          </div>
+
+          <div class="grid-view-none mobile-display-none slds-col slds-size_1-of-1 slds-large-size_1-of-12 slds-order_7 slds-large-order_6">
+            <button class="slds-button slds-button_icon" title="More Options">
+              <svg class="view-more-icon-transform font-color_blue color-link slds-button__icon slds-button__icon_medium" aria-hidden="true">
+                <use xlink:href="salesforce-lightning-design-system-2.13.7/assets/icons/utility-sprite/svg/symbols.svg#open"></use>
+              </svg>
+              <span class="slds-assistive-text">More options</span> &nbsp;
+              <a class="font-color_blue">View</a>
+            </button> 
+          </div>
+
+
+          <div class="cardContentColumn detail-button slds-col slds-size_1-of-1 slds-large-size_1-of-12 slds-order_1 slds-large-order_7">
+            <button class="slds-float_right slds-button slds-button_icon" title="More Options">
+              <svg class="slds-button__icon slds-button__icon_medium" aria-hidden="true">
+                <use xlink:href="salesforce-lightning-design-system-2.13.7/assets/icons/utility-sprite/svg/symbols.svg#threedots"></use>
+              </svg>
+              <span class="slds-assistive-text">More options</span>
+            </button> 
+          </div>
+        </div>
+        <footer class="gridViewShow desktop-display-none slds-card__footer">
+          <a class="slds-card__footer-action" href="javascript:void(0);">View Detail
+            <span class="slds-assistive-text">Accounts</span>
+          </a>
+        </footer>
+      </article>
+    </div>
+
+
+
+
+    <div class="slds-col container-list bg-color_white slds-m-horizontal_large mobile-margin-top"> <!--style="width:33.33%"-->
+
+      <article class="card-mobile slds-p-around_small card-border slds-card">
+
+        <div class="cardColumn card-content-mobile slds-grid slds-gutters slds-grid_vertical-align-center slds-wrap">
+
+          <div class="cardContentColumn slds-col slds-size_1-of-1 slds-large-size_1-of-12 slds-order_2 slds-large-order_1">
+
+            <img class="headshots" src="https://images.unsplash.com/photo-1517544901192-0f8a27fc56a5?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=400&ixid=eyJhcHBfaWQiOjF9&ixlib=rb-1.2.1&q=80&w=400">
+          </div>
+
+          <div class="cardContentColumn name-field slds-col slds-size_1-of-1 slds-large-size_3-of-12 slds-order_3 slds-large-order_2">
+            <span>Nick Ainsley</span>
+          </div>
+
+          <div class="cardCustomOrder3 gridViewShow cardContentColumn desktop-display-none fontColor-light mobile-smallFont slds-col slds-size_1-of-1 slds-order_4">
+            <span>nickansley@gmail.com</span>
+          </div>
+
+          <div class="cardCustomOrder3 gridViewShow cardContentColumn desktop-display-none fontColor-light slds-m-top_small mobile-smallFont slds-col slds-size_1-of-1 slds-order_4">
+            Total Contributors
+          </div>
+
+          <div class="cardContentColumn slds-col slds-size_1-of-1 slds-large-size_2-of-12 slds-order_5 slds-large-order_3">
+            <span>$ 256,324</span>
+          </div>
+
+          <div class="grid-view-none mobile-display-none slds-col slds-size_1-of-1 slds-large-size_2-of-12 slds-order_5 slds-large-order_4">
+            <span>$ 571,823</span>
+          </div>
+
+
+          <div class="grid-view-none mobile-display-none slds-col slds-size_1-of-1 slds-large-size_2-of-12 slds-order_6 slds-large-order_5">
+            <span>$ 872,345</span>
+          </div>
+
+          <div class="grid-view-none mobile-display-none slds-col slds-size_1-of-1 slds-large-size_1-of-12 slds-order_7 slds-large-order_6">
+            <button class="slds-button slds-button_icon" title="More Options">
+              <svg class="view-more-icon-transform font-color_blue color-link slds-button__icon slds-button__icon_medium" aria-hidden="true">
+                <use xlink:href="salesforce-lightning-design-system-2.13.7/assets/icons/utility-sprite/svg/symbols.svg#open"></use>
+              </svg>
+              <span class="slds-assistive-text">More options</span> &nbsp;
+              <a class="font-color_blue">View</a>
+            </button> 
+          </div>
+
+
+          <div class="cardContentColumn detail-button slds-col slds-size_1-of-1 slds-large-size_1-of-12 slds-order_1 slds-large-order_7">
+            <button class="slds-float_right slds-button slds-button_icon" title="More Options">
+              <svg class="slds-button__icon slds-button__icon_medium" aria-hidden="true">
+                <use xlink:href="salesforce-lightning-design-system-2.13.7/assets/icons/utility-sprite/svg/symbols.svg#threedots"></use>
+              </svg>
+              <span class="slds-assistive-text">More options</span>
+            </button> 
+          </div>
+        </div>
+        <footer class="gridViewShow desktop-display-none slds-card__footer">
+          <a class="slds-card__footer-action" href="javascript:void(0);">View Detail
+            <span class="slds-assistive-text">Accounts</span>
+          </a>
+        </footer>
+      </article>
+    </div>
+
+
+
+    <div class=" slds-col container-list bg-color_white slds-m-horizontal_large mobile-margin-top"> <!--style="width:33.33%"-->
+
+      <article class="card-mobile slds-p-around_small card-border slds-card">
+
+        <div class="cardColumn card-content-mobile slds-grid slds-gutters slds-grid_vertical-align-center slds-wrap">
+
+          <div class="cardContentColumn slds-col slds-size_1-of-1 slds-large-size_1-of-12 slds-order_2 slds-large-order_1">
+
+            <img class="headshots" src="https://images.unsplash.com/photo-1599577180513-7dd76ffd9761?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=400&ixid=eyJhcHBfaWQiOjF9&ixlib=rb-1.2.1&q=80&w=400">
+          </div>
+
+          <div class="cardContentColumn name-field slds-col slds-size_1-of-1 slds-large-size_3-of-12 slds-order_3 slds-large-order_2">
+            <span>Eva Adley</span>
+          </div>
+
+          <div class="cardCustomOrder3 gridViewShow cardContentColumn desktop-display-none fontColor-light mobile-smallFont slds-col slds-size_1-of-1 slds-order_4">
+            <span>evaadley@gmail.com</span>
+          </div>
+
+          <div class="cardCustomOrder3 gridViewShow cardContentColumn desktop-display-none fontColor-light slds-m-top_small mobile-smallFont slds-col slds-size_1-of-1 slds-order_4">
+            Total Contributors
+          </div>
+
+          <div class="cardContentColumn slds-col slds-size_1-of-1 slds-large-size_2-of-12 slds-order_5 slds-large-order_3">
+            <span>$ 123,789</span>
+          </div>
+
+          <div class="grid-view-none mobile-display-none slds-col slds-size_1-of-1 slds-large-size_2-of-12 slds-order_5 slds-large-order_4">
+            <span>$ 571,823</span>
+          </div>
+
+
+          <div class="grid-view-none mobile-display-none slds-col slds-size_1-of-1 slds-large-size_2-of-12 slds-order_6 slds-large-order_5">
+            <span>$ 872,345</span>
+          </div>
+
+          <div class="grid-view-none mobile-display-none slds-col slds-size_1-of-1 slds-large-size_1-of-12 slds-order_7 slds-large-order_6">
+            <button class="slds-button slds-button_icon" title="More Options">
+              <svg class="view-more-icon-transform font-color_blue color-link slds-button__icon slds-button__icon_medium" aria-hidden="true">
+                <use xlink:href="salesforce-lightning-design-system-2.13.7/assets/icons/utility-sprite/svg/symbols.svg#open"></use>
+              </svg>
+              <span class="slds-assistive-text">More options</span> &nbsp;
+              <a class="font-color_blue">View</a>
+            </button> 
+          </div>
+
+
+          <div class="cardContentColumn detail-button slds-col slds-size_1-of-1 slds-large-size_1-of-12 slds-order_1 slds-large-order_7">
+            <button class="slds-float_right slds-button slds-button_icon" title="More Options">
+              <svg class="slds-button__icon slds-button__icon_medium" aria-hidden="true">
+                <use xlink:href="salesforce-lightning-design-system-2.13.7/assets/icons/utility-sprite/svg/symbols.svg#threedots"></use>
+              </svg>
+              <span class="slds-assistive-text">More options</span>
+            </button> 
+          </div>
+        </div>
+        <footer class="gridViewShow desktop-display-none slds-card__footer">
+          <a class="slds-card__footer-action" href="javascript:void(0);">View Detail
+            <span class="slds-assistive-text">Accounts</span>
+          </a>
+        </footer>
+      </article>
+    </div>
+
+
+
+
+
+
+
+
+  </div>
+
+
+  <!--Investors List ends here-->
+  <!--Content ends here-->
+</div>
+
+
+
+</div>
+<!-- desktop main body ends here-->
+
+
+
+<!-- main ends here -->
+
+
+
+</body>
+</html> 
